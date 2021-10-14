@@ -109,43 +109,40 @@ class ControllerActivity : AppCompatActivity() {
     }
 
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.addIncome -> {
-                var builder: AlertDialog.Builder = AlertDialog.Builder(this)
-                builder.setTitle("Enter the monthly Income")
-                _income = EditText(this)
-                _income!!.inputType = InputType.TYPE_CLASS_NUMBER
-                _income!!.hint = "Please your monthly income"
-                builder.setView(_income)
-
-                builder.setPositiveButton(
-                    "Accept"
-                ) { p0, p1 ->
-                    _incomeView?.setText(_income!!.text.toString())
-
-
-                }
-
-                builder.setNegativeButton("Cancel") { p0, p1 ->
-
-                }
-
-                // build the dialog and show it
-                var dialog: AlertDialog = builder.create()
-                dialog.show()
-                return true
-            }
-
-            R.id.first -> {
-                return true
-            }
-
-            R.id.second -> {
-                return true
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        when (item.itemId) {
+//            R.id.addIncome -> {
+//                var builder: AlertDialog.Builder = AlertDialog.Builder(this)
+//                builder.setTitle("Enter the monthly Income")
+//                _income = EditText(this)
+//                _income!!.inputType = InputType.TYPE_CLASS_NUMBER
+//                _income!!.hint = "Please your monthly income"
+//                builder.setView(_income)
+//
+//                builder.setPositiveButton(
+//                    "Accept"
+//                ) { p0, p1 ->
+//                    _incomeView?.setText(_income!!.text.toString())
+//
+//
+//                }
+//
+//                builder.setNegativeButton("Cancel") { p0, p1 ->
+//
+//                }
+//
+//                // build the dialog and show it
+//                var dialog: AlertDialog = builder.create()
+//                dialog.show()
+//                return true
+//            }
+//
+//            R.id.first -> {
+//                return true
+//            }
+//
+//        }
+//        return super.onOptionsItemSelected(item)
+//    }
 
 }
