@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#010429"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/income_container"
+        android:layout_centerHorizontal="false"
+        android:padding="20dp"
+        android:layout_gravity="start"
+        android:layout_marginRight="180dp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/design_default_color_on_primary"
+            android:text="Income"
+            android:id="@+id/income_text"
+            />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="value"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/incomeValue"
+            android:textColor="@color/design_default_color_on_primary"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_toRightOf="@+id/income_container"
+        android:padding="20dp"
+        android:layout_gravity="end"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/design_default_color_on_primary"
+            android:text="Surplus"
+            android:id="@+id/surplus_deficit"
+            />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="value"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/surplus_deficit_value"
+            android:textColor="@color/design_default_color_on_primary"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/income_container"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:id="@+id/buttonHandler"
+        >
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Add Expenses"
+            android:id="@+id/add_expenses"
+            android:layout_margin="10dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.Switch"
+            android:background="@android:color/black"
+            android:textColor="@color/design_default_color_on_primary"
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:text="Object"
+            android:id="@+id/object"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.Switch"
+            android:background="@android:color/black"
+            android:textColor="@color/design_default_color_on_primary"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/buttonHandler"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:id="@+id/title1"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:text="Expenses"
+            android:textColor="@color/design_default_color_on_primary"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="20sp"
+            android:text="Amount"
+            android:gravity="end"
+            android:textColor="@color/design_default_color_on_primary"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title1"
+        >
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/recyclerview"
+            />
+    </LinearLayout>
+
+
+</RelativeLayout>

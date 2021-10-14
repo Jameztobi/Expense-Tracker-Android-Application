@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    tools:context=".MainActivity"
+    >
+    <item
+        android:id="@+id/newSheet"
+        android:icon="@android:drawable/ic_menu_add"
+        app:showAsAction="never"
+        android:title="Add New Sheet"
+        />
+
+    <item
+        android:id="@+id/first"
+        app:showAsAction="never"
+        android:title="First"/>
+
+    <item
+        android:id="@+id/second"
+        app:showAsAction="never"
+        android:title="Second"/>
+</menu>
