@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:clickable="true"
     android:focusable="true"
     android:background="@android:color/black"
@@ -21,7 +21,6 @@
         android:text="Expenses"
         android:textSize="20sp"
         android:padding="10dp"
-
         android:textColor="@color/design_default_color_on_primary"
     />
 
@@ -34,7 +33,6 @@
         android:text="Amount"
         android:gravity="end"
         android:textSize="20sp"
-
         android:textColor="@color/design_default_color_on_primary"
         />
 

@@ -1,25 +1,26 @@
-package com.example.assignment_1
+package com.example.assignment_1.adapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.assignment_1.R
+import com.example.assignment_1.model.ExpenseItem
 
-class RecyclerAdapter(val context: Context, var ri_arraylist: ArrayList<RecyclerItem>) :
+class RecyclerAdapter(val context: Context, private var ri_arraylist: ArrayList<ExpenseItem>) :
     RecyclerView.Adapter<RecyclerAdapter.ItemHolder>() {
     //private fields of the class
     private val _context: Context = context
-    private var _ri_arraylist: ArrayList<RecyclerItem> = ri_arraylist
+    private var _ri_arraylist: ArrayList<ExpenseItem> = ri_arraylist
 
     // nested class that will implement a view holder for an item in the list
     class ItemHolder(v: View) : RecyclerView.ViewHolder(v), View.OnClickListener {
 
         // private fields of the class
         private var _view: View = v
-        private var _recycler_item: RecyclerItem ? = null
+        private var _recycler_item: ExpenseItem? = null
         lateinit var _tv_expenses: TextView
         lateinit var _tv_amount: TextView
 
@@ -36,6 +37,7 @@ class RecyclerAdapter(val context: Context, var ri_arraylist: ArrayList<Recycler
 
         override fun onClick(p0: View?) {
             TODO("Not yet implemented")
+
         }
 
 //        override fun onClick(p0: View?) {
@@ -63,7 +65,7 @@ class RecyclerAdapter(val context: Context, var ri_arraylist: ArrayList<Recycler
     // function that will bind an item in our arraylist to a view holder so it can be displayed
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
         // get the item at the current position
-        val item: RecyclerItem = _ri_arraylist.get(position)
+        val item: ExpenseItem = _ri_arraylist.get(position)
 
         // set the number and text on the view holder
         holder._tv_expenses.setText(item._expenses_text)

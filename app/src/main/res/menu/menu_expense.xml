@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ControllerActivity"
+    >
+    <item
+        android:id="@+id/newIncome"
+        android:icon="@android:drawable/ic_menu_add"
+        app:showAsAction="never"
+        android:title="Enter Income"
+        />
+
+    <item
+        android:id="@+id/editIncome"
+        app:showAsAction="never"
+        android:title="Update Income"/>
+
+
+</menu>
