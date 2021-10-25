@@ -57,15 +57,12 @@ class ControllerActivity : AppCompatActivity() {
         _surplus_deficit_value = findViewById<TextView>(R.id.surplus_deficit_value)
         _surplus_deficit_text = findViewById<TextView>(R.id.surplus_deficit)
 
-        try{
-            expenseData()
-            _recyclerview.layoutManager = LinearLayoutManager(this)
-            recycler_adapter = RecyclerAdapter(this, _rl_arraylist)
-            _recyclerview.adapter = recycler_adapter
-        }
-        catch (e: java.lang.Exception){
-            Log.i("try", e.toString())
-        }
+
+        expenseData()
+        _recyclerview.layoutManager = LinearLayoutManager(this)
+        recycler_adapter = RecyclerAdapter(this, _rl_arraylist)
+        _recyclerview.adapter = recycler_adapter
+
 
         //add a listener to the input button that will trigger an input dialog
         _add_expenses_button?.setOnClickListener(object : View.OnClickListener {
@@ -119,8 +116,6 @@ class ControllerActivity : AppCompatActivity() {
     }
 
     private fun expenseDialog() {
-
-
         var dialog= Dialog(this)
         dialog.setContentView(R.layout.expense_item)
         var expenseName = dialog.findViewById<EditText>(R.id.expenseNameValue)
@@ -133,7 +128,6 @@ class ControllerActivity : AppCompatActivity() {
         layoutParam.width=WindowManager.LayoutParams.MATCH_PARENT
         layoutParam.height= WindowManager.LayoutParams.WRAP_CONTENT
         dialog.window?.attributes=layoutParam
-
 
         send.setOnClickListener{
                 var name = expenseName.text.toString()
@@ -149,77 +143,17 @@ class ControllerActivity : AppCompatActivity() {
             }
 
 
-        cancel.setOnClickListener{object : View.OnClickListener{
-            override fun onClick(p0: View?) {
-                snackShow("You have canceled")
-                dialog.dismiss()
-            }
-        }
+        cancel.setOnClickListener{
+            snackShow("You have canceled")
+            dialog.dismiss()
 
         }
-
 
         dialog.show()
 
-
-//        var builder: AlertDialog.Builder = AlertDialog.Builder(this)
-//        builder.setTitle("Please enter a new expense")
-//        _editExpense = EditText(this)
-//        _editExpense!!.inputType = InputType.TYPE_CLASS_TEXT
-//        _editExpense!!.hint = "Enter text here"
-//        builder.setView(_editExpense)
-//
-//
-//        builder.setPositiveButton("Accept") { p0, p1 ->
-//            amountDialog()
-//        }
-//
-//        builder.setNegativeButton("Cancel", object : DialogInterface.OnClickListener {
-//            override fun onClick(p0: DialogInterface?, p1: Int) {
-//            }
-//        })
-//
-//        // build the dialog and show it
-//        var dialog: AlertDialog = builder.create()
-//        dialog.show()
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    private fun amountDialog() {
-        var builder: AlertDialog.Builder = AlertDialog.Builder(this)
-        builder.setTitle("Enter the amount for the expense")
-        _editIncome = EditText(this)
-        _editIncome!!.inputType = InputType.TYPE_CLASS_NUMBER
-        _editIncome!!.hint = "Enter amount here"
-        builder.setView(_editIncome)
 
-        builder.setPositiveButton(
-            "Accept"
-        ) { p0, p1 ->
-
-            try{
-                var exp: ExpenseItem=ExpenseItem(null, _editExpense!!.text.toString(), _editIncome!!.text.toString(), sheetItem.id)
-                _total_expense += _editIncome!!.text.toString().toInt()
-                addData(exp)
-                _rl_arraylist.add(exp)
-                recycler_adapter?.notifyDataSetChanged()
-
-                setSurplusValue()
-            }
-            catch (e: Exception){
-                Log.i("mine", e.toString())
-            }
-
-        }
-
-        builder.setNegativeButton("Cancel") { p0, p1 ->
-
-        }
-
-        // build the dialog and show it
-        var dialog: AlertDialog = builder.create()
-        dialog.show()
-    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_expense, menu)

@@ -40,6 +40,25 @@
            android:textColor="@color/design_default_color_on_primary"
            />
 
+       <ImageButton
+           android:id="@+id/btnedit_expenseSheet"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_weight="1"
+           android:background="@drawable/ic_baseline_edit_24"
+           android:layout_gravity="center"
+           />
+
+
+       <ImageButton
+           android:id="@+id/btndelete_expenseSheet"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_weight="1"
+           android:background="@drawable/ic_baseline_delete"
+           android:layout_gravity="center"
+           />
+
    </LinearLayout>
 
 

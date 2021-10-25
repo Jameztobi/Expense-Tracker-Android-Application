@@ -23,11 +23,24 @@
         android:id="@+id/title_text"
         />
 
+    <Button
+        android:id="@+id/sendSheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/custom_button"
+        android:text="Add Sheet"
+        android:layout_margin="20dp"
+        />
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/recyclerview_main"
         tools:listitem="@layout/recycler_item2"
         />
+
+
 
 </LinearLayout>
