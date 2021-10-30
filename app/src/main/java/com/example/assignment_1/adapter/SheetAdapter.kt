@@ -35,13 +35,11 @@ class SheetAdapter(
     class ItemHolder(private val v: View, val itemClicked: (sheetItem: SheetItem) -> Unit) :
         RecyclerView.ViewHolder(v) {
         var _view: View = v
-        private var name: TextView = _view.findViewById<TextView>(R.id.newSheetItem)
         private var period: TextView = _view.findViewById<TextView>(R.id.period)
         var btnDelete: ImageButton = _view.findViewById<ImageButton>(R.id.btndelete_expenseSheet)
         var btnEdit: ImageButton = _view.findViewById<ImageButton>(R.id.btnedit_expenseSheet)
 
         fun bind(sheetItem: SheetItem) {
-            name.text = sheetItem._sheet_name
             period.text = sheetItem._period
             _view.setOnClickListener {
                 itemClicked(sheetItem)
@@ -104,19 +102,16 @@ class SheetAdapter(
             override fun onClick(p0: View?) {
                 var dialog = Dialog(c)
                 dialog.setContentView(R.layout.update_sheet_item)
-                var sheet_name = dialog.findViewById<EditText>(R.id.update_sheetname)
                 var month = dialog.findViewById<Spinner>(R.id.update_month)
                 var year = dialog.findViewById<Spinner>(R.id.update_year)
                 var send = dialog.findViewById<Button>(R.id.updateSheet)
                 var cancel = dialog.findViewById<Button>(R.id.cancel_updateSheet)
 
-                var name: String = item._sheet_name
                 var period: List<String> = item._period.split(" ", "-")
                 var period_year: String = period[1]
                 var period_month: String = period[0]
                 var yearsList : ArrayList<String> = getYears()
 
-                sheet_name.setText(name)
 
                 year.adapter = ArrayAdapter<String>(
                     context,
@@ -140,20 +135,20 @@ class SheetAdapter(
                 getMonthDropDownList(month, c, period_month)
 
 
-                var layoutParam = WindowManager.LayoutParams()
-                layoutParam.copyFrom(dialog.window?.attributes)
-                layoutParam.width = WindowManager.LayoutParams.MATCH_PARENT
-                layoutParam.height = WindowManager.LayoutParams.WRAP_CONTENT
-                dialog.window?.attributes = layoutParam
+                    var layoutParam = WindowManager.LayoutParams()
+                    layoutParam.copyFrom(dialog.window?.attributes)
+                    layoutParam.width = WindowManager.LayoutParams.MATCH_PARENT
+                    layoutParam.height = WindowManager.LayoutParams.WRAP_CONTENT
+                    dialog.window?.attributes = layoutParam
 
 
                 send.setOnClickListener(object: View.OnClickListener{
                     override fun onClick(p0: View?) {
                         var newPeriod = month.selectedItem.toString()+"-"+year.selectedItem.toString()
-                        var result: Int = _expenseDb.updateData(id, sheet_name.text.toString(),
+                        var result: Int = _expenseDb.updateData(id,
                             newPeriod)
 
-                        var newItem: SheetItem = SheetItem(item.id, sheet_name.text.toString(), newPeriod, item._income)
+                        var newItem: SheetItem = SheetItem(item.id,  newPeriod, item._income, 0, 0, 0)
 
                         if (result > 0) {
                             _sheetList.remove(item)

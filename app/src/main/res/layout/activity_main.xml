@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#010429"
+    android:background="@color/bngcolor"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -19,7 +19,7 @@
         android:layout_marginBottom="20dp"
         android:padding="10dp"
         android:textColor="@color/design_default_color_on_primary"
-        android:background="#0303ff"
+
         android:id="@+id/title_text"
         />
 

@@ -12,15 +12,21 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="Enter an expense and amount"
         android:gravity="center"
         android:textSize="20dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         >
 
         <TextView
@@ -29,15 +35,15 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="37dp"
             android:text="Name"
-            android:textSize="20dp"
+            android:textSize="17dp"
+            android:textColor="@color/black"
             />
 
         <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
             android:id="@+id/expenseNameValue"
-            />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="" />
 
     </LinearLayout>
 
@@ -45,6 +51,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         >
 
         <TextView
@@ -52,37 +60,76 @@
             android:layout_height="wrap_content"
             android:text="Amount"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="25dp"
-            android:textSize="20dp"
+            android:layout_marginEnd="20dp"
+            android:textSize="17dp"
+            android:textColor="@color/black"
             />
 
         <EditText
+            android:id="@+id/amtValue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+
+        >
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Date"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="50dp"
+            android:textSize="17dp"
+            android:textColor="@color/black"
+            />
+
+        <EditText
+            android:id="@+id/calender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text=""
-            android:id="@+id/amtValue"
             />
 
     </LinearLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Indicate if the expense regular or iirregular"
+        android:textSize="15dp"
+        android:layout_marginLeft="17dp"
+        />
+
     <RadioGroup
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/radioGroup"
+        >
         <RadioButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Regular"
             android:checked="true"
-            android:id="@+id/regular"
-            android:textSize="15dp"
+            android:id="@+id/rb1"
+            android:layout_marginLeft="10dp"
             />
 
         <RadioButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Irregular"
-            android:id="@+id/irregular"
-            android:textSize="15dp"
+            android:id="@+id/rb2"
+            android:layout_marginLeft="10dp"
             />
 
     </RadioGroup>
@@ -100,6 +147,7 @@
             android:id="@+id/sendExp"
             android:layout_gravity="start"
             android:layout_marginRight="5dp"
+            android:layout_marginLeft="10dp"
             />
 
         <Button
@@ -110,6 +158,9 @@
             android:text="Cancel"
             android:layout_marginRight="5dp"
             />
+
+
+
 
     </LinearLayout>
 

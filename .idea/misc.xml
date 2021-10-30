@@ -9,15 +9,15 @@
         <entry key="app/src/main/res/drawable/ic_baseline_delete.xml" value="0.16145833333333334" />
         <entry key="app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.16145833333333334" />
         <entry key="app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.16145833333333334" />
-        <entry key="app/src/main/res/layout/activity_controller.xml" value="0.1503623188405797" />
+        <entry key="app/src/main/res/layout/activity_controller.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/add_date.xml" value="0.14010416666666667" />
         <entry key="app/src/main/res/layout/addsheet_item.xml" value="0.18" />
         <entry key="app/src/main/res/layout/expense_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/menu.xml" value="0.1503623188405797" />
         <entry key="app/src/main/res/layout/menu_expense.xml" value="0.1503623188405797" />
-        <entry key="app/src/main/res/layout/recycler_item.xml" value="0.2" />
-        <entry key="app/src/main/res/layout/recycler_item2.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/recycler_item.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/recycler_item2.xml" value="0.18" />
         <entry key="app/src/main/res/layout/update_sheet_item.xml" value="0.1503623188405797" />
         <entry key="app/src/main/res/menu/menu.xml" value="0.2" />
         <entry key="app/src/main/res/menu/menu_expense.xml" value="0.18" />

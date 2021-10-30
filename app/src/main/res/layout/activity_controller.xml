@@ -9,67 +9,122 @@
     tools:context=".MainActivity">
 
     <LinearLayout
+        android:id="@+id/income_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/income_container"
         android:layout_centerHorizontal="false"
-        android:padding="20dp"
         android:layout_gravity="start"
-        android:layout_marginRight="180dp"
-        >
+        android:layout_marginRight="10dp"
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/design_default_color_on_primary"
-            android:text="Income"
             android:id="@+id/income_text"
-            />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Income"
+            android:textColor="@color/design_default_color_on_primary"
+            android:textSize="15sp" />
 
 
         <TextView
+            android:id="@+id/incomeValue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="value"
             android:layout_marginLeft="5dp"
-            android:id="@+id/incomeValue"
+            android:text="value"
             android:textColor="@color/design_default_color_on_primary"
-            />
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/surplus_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="35dp"
+        android:layout_toRightOf="@+id/income_container"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/surplus_deficit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Surplus"
+            android:textColor="@color/design_default_color_on_primary"
+            android:textSize="15sp" />
+
+
+        <TextView
+            android:id="@+id/surplus_deficit_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="value"
+            android:textColor="@color/design_default_color_on_primary"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/regular_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginLeft="80dp"
+        android:layout_toRightOf="@+id/surplus_container"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/regular_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Regular"
+            android:textColor="@color/design_default_color_on_primary"
+            android:textSize="15sp" />
+
+
+        <TextView
+            android:id="@+id/regular_value"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="value"
+            android:textColor="@color/design_default_color_on_primary"
+            android:textSize="15sp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_toRightOf="@+id/income_container"
-        android:padding="20dp"
+        android:layout_toRightOf="@+id/regular_container"
+        android:padding="10dp"
         android:layout_gravity="end"
         >
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:textColor="@color/design_default_color_on_primary"
-            android:text="Surplus"
-            android:id="@+id/surplus_deficit"
+            android:text="Irregular"
+            android:id="@+id/irregular_text"
             />
 
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:text="value"
             android:layout_marginLeft="5dp"
-            android:id="@+id/surplus_deficit_value"
+            android:id="@+id/irregular_value"
             android:textColor="@color/design_default_color_on_primary"
             />
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
