@@ -5,7 +5,6 @@ import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
-import android.text.Editable
 import android.text.InputType
 import android.util.Log
 import android.view.LayoutInflater
@@ -17,9 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.assignment_1.R
 import com.example.assignment_1.database.ExpenseTrackerDB
 import com.example.assignment_1.model.ExpenseItem
-import com.example.assignment_1.model.SheetItem
 import com.example.assignment_1.model.StatItem
-import com.google.android.material.snackbar.Snackbar
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -93,6 +90,7 @@ class RecyclerAdapter(val context: Context, private var ri_arraylist: ArrayList<
         // get the item at the current position
         val item: ExpenseItem = _ri_arraylist.get(position)
         var id = item._id
+        var currentPosition = position
 
         // set the number and text on the view holder
         holder._tv_expenses.setText(item._expenses_text)
@@ -102,42 +100,13 @@ class RecyclerAdapter(val context: Context, private var ri_arraylist: ArrayList<
         //add a listener to the input button that will trigger an input dialog
         holder.btnDelete.setOnClickListener(object : View.OnClickListener {
             override fun onClick(p0: View?) {
-                //trigger the alert dialog
-                var builder: AlertDialog.Builder = AlertDialog.Builder(_context)
-                builder.setTitle("Confirm Delete Item")
-                builder.setMessage("Sure you want to delete the item")
-                builder.setIcon(android.R.drawable.ic_menu_delete)
-                builder.setCancelable(false)
-
-
-                builder.setPositiveButton("Yes", object : DialogInterface.OnClickListener {
-                    override fun onClick(p0: DialogInterface?, p1: Int) {
-                        var result: Int = _expenseDb.deleteExpenseRow(id.toString())
-
-                        if (result > 0) {
-                            Toast.makeText(_context, "Deleted", Toast.LENGTH_SHORT).show()
-                            _ri_arraylist.remove(item)
-                            clickListener.onDelete(item)
-                            notifyDataSetChanged()
-
-                        } else {
-                            Toast.makeText(_context, "Failed", Toast.LENGTH_SHORT).show()
-                        }
-
-                    }
-                })
-
-
-                builder.setNegativeButton("No", null)
-
-                builder.show()
-                Log.i("successmessage", "This is true")
+                dialogDeleteItem(item, id)
             }
         })
 
         holder.btnEdit.setOnClickListener(object: View.OnClickListener{
             override fun onClick(p0: View?) {
-                expenseDialog(item)
+                expenseDialog(item, currentPosition)
             }
 
         })
@@ -146,7 +115,7 @@ class RecyclerAdapter(val context: Context, private var ri_arraylist: ArrayList<
 
     }
 
-    private fun expenseDialog(item: ExpenseItem) {
+    private fun expenseDialog(item: ExpenseItem, position: Int) {
         var dialog = Dialog(_context)
         dialog.setContentView(R.layout.expense_item)
         var layoutParam = WindowManager.LayoutParams()
@@ -193,16 +162,11 @@ class RecyclerAdapter(val context: Context, private var ri_arraylist: ArrayList<
             }
 
             var exp = ExpenseItem(item._id, name, amount, item._fk_id, date, status)
-            //_total_expense += amount.toInt()
-            //addData(exp)
-            //updateTotalExpense(retrieveSheet()!!._total_expense + _total_expense)
             _ri_arraylist.remove(item)
              clickListener.onUpdate(updatedSheet, exp)
-            _ri_arraylist.add(exp)
+            _ri_arraylist.add(position, exp)
             notifyDataSetChanged()
-            snackShow("Expenses Added")
-            //setStatusValue()
-            //setSurplusValue()
+            snackShow("Expense Updated")
             dialog.dismiss()
         }
         cancel.setOnClickListener {
@@ -238,6 +202,40 @@ class RecyclerAdapter(val context: Context, private var ri_arraylist: ArrayList<
             )
             dpd.show()
         }
+
+    }
+
+    private fun dialogDeleteItem(item: ExpenseItem, id: Int?) {
+            //trigger the alert dialog
+            var builder: AlertDialog.Builder = AlertDialog.Builder(_context)
+            builder.setTitle("Confirm Delete Item")
+            builder.setMessage("Sure you want to delete the item")
+            builder.setIcon(android.R.drawable.ic_menu_delete)
+            builder.setCancelable(false)
+
+
+            builder.setPositiveButton("Yes", object : DialogInterface.OnClickListener {
+                override fun onClick(p0: DialogInterface?, p1: Int) {
+                    var result: Int = _expenseDb.deleteExpenseRow(item._id.toString())
+
+                    if (result > 0) {
+                        Toast.makeText(_context, "Deleted", Toast.LENGTH_SHORT).show()
+                        _ri_arraylist.remove(item)
+                        clickListener.onDelete(item)
+                        notifyDataSetChanged()
+
+                    } else {
+                        Toast.makeText(_context, "Failed", Toast.LENGTH_SHORT).show()
+                    }
+
+                }
+            })
+
+
+            builder.setNegativeButton("No", null)
+
+            builder.show()
+            Log.i("successmessage", "This is true")
 
     }
 

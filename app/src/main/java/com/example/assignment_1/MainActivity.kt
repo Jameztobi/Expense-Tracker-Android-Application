@@ -81,9 +81,6 @@ class MainActivity : AppCompatActivity() {
         })
 
 
-
-
-
     }
 
 
@@ -97,7 +94,8 @@ class MainActivity : AppCompatActivity() {
         val group_by: String? = null
         val having: String? = null
         val order_by: String? = null
-        var c: Cursor = _sdb.query(table_name, columns, where, where_args, group_by, having, order_by)
+        var c: Cursor =
+            _sdb.query(table_name, columns, where, where_args, group_by, having, order_by)
         // var _list_sheetName: java.util.ArrayList<SheetItem>? = null
 
         if (c.moveToFirst()) {
@@ -125,7 +123,7 @@ class MainActivity : AppCompatActivity() {
 
 
     //private function that will add some data into our database
-    private fun addData(name: String, period: String) {
+    private fun addData(period: String) {
         val row: ContentValues = ContentValues().apply {
             put("PERIOD", period)
             put("INCOME", 0)
@@ -201,7 +199,6 @@ class MainActivity : AppCompatActivity() {
     private fun createSheetDialog() {
         var dialog = Dialog(this)
         dialog.setContentView(R.layout.addsheet_item)
-        var sheet_name = dialog.findViewById<EditText>(R.id.sheet_new_name)
         _spinner = dialog.findViewById<Spinner>(R.id.month)
         _spinner_years = dialog.findViewById<Spinner>(R.id.years)
         getMonthDropDownList()
@@ -218,17 +215,13 @@ class MainActivity : AppCompatActivity() {
 
 
         send.setOnClickListener {
-            if (TextUtils.isEmpty(sheet_name.text.toString())) {
-                displayMessage("Sheet name can't be empty")
-            } else {
-                var period =
-                    _spinner?.selectedItem.toString() + "-" + _spinner_years?.selectedItem.toString()
-                addData(sheet_name.text.toString(), period)
-                list_sheetName.clear()
-                retrieveData()
-                displayMessage("New Sheet Created")
-                dialog.dismiss()
-            }
+            var period = _spinner?.selectedItem.toString() + "-" + _spinner_years?.selectedItem.toString()
+            addData(period)
+            list_sheetName.clear()
+            retrieveData()
+            displayMessage("New Sheet Created")
+            dialog.dismiss()
+
 
         }
 

@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Expense Tracker</string>
     <string-array name="month_string">
+        <item>November</item>
         <item>January</item>
         <item>February</item>
         <item>March</item>
@@ -11,7 +12,6 @@
         <item>August</item>
         <item>September</item>
         <item>October</item>
-        <item>November</item>
         <item>December</item>
     </string-array>
 </resources>

@@ -147,17 +147,7 @@
             android:textColor="@color/design_default_color_on_primary"
             />
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_margin="10dp"
-            android:text="Object"
-            android:id="@+id/object"
-            android:textAppearance="@style/TextAppearance.AppCompat.Widget.Switch"
-            android:background="@android:color/black"
-            android:textColor="@color/design_default_color_on_primary"
-            />
+
 
     </LinearLayout>
 

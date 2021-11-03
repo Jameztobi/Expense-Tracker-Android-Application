@@ -7,6 +7,7 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.text.InputType
+import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
@@ -75,13 +76,13 @@ class ControllerActivity : AppCompatActivity() {
         _recyclerview.layoutManager = LinearLayoutManager(this)
         recycler_adapter = RecyclerAdapter(this, _rl_arraylist, object: RecyclerAdapter.ClickListener{
             override fun onDelete(item: ExpenseItem) {
-//                updateTotalExpense(retrieveSheet()!!._total_expense-item._expenses_amount.toInt())
-//                if(item._status.equals("Regular")){
-//                    updateRegular(retrieveSheet()!!._regular - item._expenses_amount.toInt())
-//                }
-//                else{
-//                    updateIrregular(retrieveSheet()!!._irregular - item._expenses_amount.toInt())
-//                }
+                updateTotalExpense(retrieveSheet()!!._total_expense-item._expenses_amount.toInt())
+                if(item._status.equals("Regular")){
+                    updateRegular(retrieveSheet()!!._regular - item._expenses_amount.toInt())
+                }
+                else{
+                    updateIrregular(retrieveSheet()!!._irregular - item._expenses_amount.toInt())
+                }
 
                 setStatusValue()
                 setSurplusValue()
@@ -220,19 +221,19 @@ class ControllerActivity : AppCompatActivity() {
             var status : String? = null
             if(id == R.id.rb1){
                 status = regular.text.toString()
-                //_total_regular_expense+=amount.toInt()
                 updateRegular(retrieveSheet()!!._regular + amount.toInt())
             }
             else{
                status = irregular.text.toString()
-                //_total_irregular_expense+=amount.toInt()
                 updateIrregular(retrieveSheet()!!._irregular + amount.toInt())
             }
 
              var exp = ExpenseItem(null, name, amount, sheetItem.id, date, status)
-            //_total_expense += amount.toInt()
-            addData(exp)
             updateTotalExpense(retrieveSheet()!!._total_expense + amount.toInt())
+
+            var expenseId: Long  = addData(exp)
+            exp._id = expenseId.toInt()
+
             _rl_arraylist.add(exp)
             recycler_adapter?.notifyDataSetChanged()
             snackShow("Expenses Added")
@@ -322,7 +323,7 @@ class ControllerActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun addData(expenseItem: ExpenseItem) {
+    private fun addData(expenseItem: ExpenseItem): Long {
         val row1: ContentValues = ContentValues().apply {
             put("EXPENSE_NAME", expenseItem._expenses_text)
             put("AMOUNT", expenseItem._expenses_amount)
@@ -330,7 +331,9 @@ class ControllerActivity : AppCompatActivity() {
             put("DATE", expenseItem._date)
             put("STATUS", expenseItem._status)
         }
-        db.insert("expense", null, row1)
+        var count = db.insert("expense", null, row1)
+
+        return count
     }
 
 
@@ -410,7 +413,7 @@ class ControllerActivity : AppCompatActivity() {
 
 
      fun setSurplusValue() {
-        if (surplusValue() > 1) {
+        if (surplusValue() >= 1) {
             _surplus_deficit_text?.setText("Surplus")
             _surplus_deficit_value?.setText(surplusValue().toString())
         } else {
@@ -424,7 +427,7 @@ class ControllerActivity : AppCompatActivity() {
         Snackbar.make(_recyclerview, message, Snackbar.LENGTH_LONG).show()
     }
 
-     fun setStatusValue(){
+     private fun setStatusValue(){
         totalRegularValue?.setText(retrieveSheet()!!._regular.toString())
         totalIrregularValue?.setText(retrieveSheet()!!._irregular.toString())
     }
