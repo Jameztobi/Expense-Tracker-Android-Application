@@ -34,16 +34,11 @@ class RecyclerAdapter(val context: Context, private var ri_arraylist: ArrayList<
 
         // private fields of the class
         private var _view: View = v
-        private var _recycler_item: ExpenseItem? = null
         lateinit var _tv_expenses: TextView
         lateinit var _tv_amount: TextView
         lateinit var _tv_status: TextView
         lateinit var btnDelete: ImageButton
         lateinit var btnEdit: ImageButton
-        lateinit var _surplus_deficit_value : TextView
-        lateinit  var totalRegularValue : TextView
-        lateinit var totalIrregularValue : TextView
-        lateinit var incomeValue: TextView
 
 
         // called to initialise the object
@@ -54,8 +49,6 @@ class RecyclerAdapter(val context: Context, private var ri_arraylist: ArrayList<
             _tv_status = _view.findViewById<TextView>(R.id.type_expense)
             btnDelete = _view.findViewById<ImageButton>(R.id.btn_delete)
             btnEdit = _view.findViewById<ImageButton>(R.id.btn_edit)
-
-
 
             // set a listener for clicks on this view holder
             _view.setOnClickListener(this)
@@ -242,8 +235,6 @@ class RecyclerAdapter(val context: Context, private var ri_arraylist: ArrayList<
     private fun snackShow(message: String) {
         Toast.makeText(_context, message, Toast.LENGTH_SHORT).show()
     }
-
-
 
 
 

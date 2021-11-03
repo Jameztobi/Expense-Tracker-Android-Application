@@ -33,12 +33,9 @@ class MainActivity : AppCompatActivity() {
     //private fields of the class
     private lateinit var _expenseDb: ExpenseTrackerDB
     private lateinit var _sdb: SQLiteDatabase
-    private lateinit var _sheetName: TextView
-    private lateinit var _period: TextView
     private var list_sheetName: ArrayList<SheetItem> = ArrayList<SheetItem>()
     private var sheetAdapter: SheetAdapter? = null
     private lateinit var _recyclerview: RecyclerView
-    private var _linear_layout: LinearLayout? = null
     private var _id: Int? = 0
     private var _spinner: Spinner? = null
     private var _spinner_years: Spinner? = null
@@ -96,7 +93,6 @@ class MainActivity : AppCompatActivity() {
         val order_by: String? = null
         var c: Cursor =
             _sdb.query(table_name, columns, where, where_args, group_by, having, order_by)
-        // var _list_sheetName: java.util.ArrayList<SheetItem>? = null
 
         if (c.moveToFirst()) {
             do {
@@ -135,32 +131,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getMonthDropDownList() {
-        var dataFormat: DateFormat = SimpleDateFormat("MM")
-        var date: Date = Date()
-        var currentMonth: String = dataFormat.format(date)
-        var res: Resources = resources
-        var monthList = res.getStringArray(R.array.month_string)
-        var selectedMonth: String? = null
-
-
         var adapter: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(
             this,
             R.array.month_string,
             android.R.layout.simple_spinner_item
         )
-
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
         _spinner?.adapter = adapter
-
-
         _spinner?.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                //p0?.setSelection(currentMonth.toInt() - 1)
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("Not yet implemented")
             }
         })
 

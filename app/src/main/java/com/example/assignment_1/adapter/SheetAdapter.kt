@@ -31,7 +31,6 @@ class SheetAdapter(
     private var _expenseDb: ExpenseTrackerDB = ExpenseTrackerDB(c)
 
 
-
     class ItemHolder(private val v: View, val itemClicked: (sheetItem: SheetItem) -> Unit) :
         RecyclerView.ViewHolder(v) {
         var _view: View = v
@@ -110,7 +109,7 @@ class SheetAdapter(
                 var period: List<String> = item._period.split(" ", "-")
                 var period_year: String = period[1]
                 var period_month: String = period[0]
-                var yearsList : ArrayList<String> = getYears()
+                var yearsList: ArrayList<String> = getYears()
 
 
                 year.adapter = ArrayAdapter<String>(
@@ -124,7 +123,6 @@ class SheetAdapter(
                 var index = getYearIndex(period_year.toInt())
                 year.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
                     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                        //p0?.setSelection(index)
                     }
 
                     override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -135,20 +133,24 @@ class SheetAdapter(
                 getMonthDropDownList(month, c, period_month)
 
 
-                    var layoutParam = WindowManager.LayoutParams()
-                    layoutParam.copyFrom(dialog.window?.attributes)
-                    layoutParam.width = WindowManager.LayoutParams.MATCH_PARENT
-                    layoutParam.height = WindowManager.LayoutParams.WRAP_CONTENT
-                    dialog.window?.attributes = layoutParam
+                var layoutParam = WindowManager.LayoutParams()
+                layoutParam.copyFrom(dialog.window?.attributes)
+                layoutParam.width = WindowManager.LayoutParams.MATCH_PARENT
+                layoutParam.height = WindowManager.LayoutParams.WRAP_CONTENT
+                dialog.window?.attributes = layoutParam
 
 
-                send.setOnClickListener(object: View.OnClickListener{
+                send.setOnClickListener(object : View.OnClickListener {
                     override fun onClick(p0: View?) {
-                        var newPeriod = month.selectedItem.toString()+"-"+year.selectedItem.toString()
-                        var result: Int = _expenseDb.updateData(id,
-                            newPeriod)
+                        var newPeriod =
+                            month.selectedItem.toString() + "-" + year.selectedItem.toString()
+                        var result: Int = _expenseDb.updateData(
+                            id,
+                            newPeriod
+                        )
 
-                        var newItem: SheetItem = SheetItem(item.id,  newPeriod, item._income, 0, 0, 0)
+                        var newItem: SheetItem =
+                            SheetItem(item.id, newPeriod, item._income, 0, 0, 0)
 
                         if (result > 0) {
                             _sheetList.remove(item)
@@ -190,9 +192,9 @@ class SheetAdapter(
         return yearList
     }
 
-    private fun getYearIndex(year: Int): Int{
-        for(i in getYears().indices){
-            if(year==getYears()[i].toInt()){
+    private fun getYearIndex(year: Int): Int {
+        for (i in getYears().indices) {
+            if (year == getYears()[i].toInt()) {
                 return i
             }
         }
@@ -201,9 +203,6 @@ class SheetAdapter(
 
     private fun getMonthDropDownList(month: Spinner, c: Context, period_month: String) {
         var monthList: Array<String> = c.resources.getStringArray(R.array.month_string)
-        var currentMonthIndex: Int = monthList.indexOf(period_month)
-        var selectedMonth: String? = null
-
 
         var adapter: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(
             this.c,
@@ -218,7 +217,6 @@ class SheetAdapter(
 
         month?.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                //p0?.setSelection(currentMonthIndex)
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {

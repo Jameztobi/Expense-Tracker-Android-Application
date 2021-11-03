@@ -28,8 +28,6 @@ class ControllerActivity : AppCompatActivity() {
     private lateinit var _recyclerview: RecyclerView
     private var _rl_arraylist: ArrayList<ExpenseItem> = ArrayList<ExpenseItem>()
     private var _add_expenses_button: Button? = null
-    private var _editExpense: EditText? = null
-    private var _editIncome: EditText? = null
     private var recycler_adapter: RecyclerAdapter? = null
     private var _income: EditText? = null
     private var _incomeView: TextView? = null
@@ -39,18 +37,12 @@ class ControllerActivity : AppCompatActivity() {
     private var totalIrregularValue: TextView? = null
     private var dateValue: EditText? = null
     private var retrieveSheet: SheetItem? = null
-
-
-
-
     private var _total_expense = 0
     private var _total_regular_expense = 0
     private var _total_irregular_expense = 0
     private var _db: ExpenseTrackerDB? = null
     private lateinit var db: SQLiteDatabase
     lateinit var sheetItem: SheetItem
-    lateinit var statItem: StatItem
-    private var fK_id: Int = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
